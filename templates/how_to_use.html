@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <H1>How to Use</H1>
+    <ul>
+        <li>Descriptive Statistics:
+            <ul>
+                <li>Enter comma-separated numbers or select a sample dataset</li>
+                <li>View mean, median, mode, range, variance, standard deviation, quartiles, and outliers</li>
+            </ul>
+        </li>
+        <li>Linear Regression:<ul>
+            <li>Enter X and Y values as comma-separated lists</li>
+            <li>View regression equation, R², and correlation coefficient</li>
+        </ul></li>
+        <li>ANOVA:<ul>
+            <li>Enter data in format: "group1:1,2,3;group2:4,5,6"</li>
+            <li>View ANOVA table with F-test, degrees of freedom, and sum of squares</li>
+        </ul></li>
+        <li>Confidence Intervals:<ul>
+            Choose between three types:
+            <li>Two Population CI (enter sample sizes, means, std devs)</li>
+            <li>Dependent Data T-Test (enter before/after measurements)</li>
+            <li>Two Sample Proportion (enter sample sizes and proportions)</li>
+        </ul></li>
+        <li>Datasets:<ul>
+            <li>Browse all available sample datasets</li>
+            <li>Click to use in calculations</li>
+        </ul></li>
+        <li>History:<ul>
+            <li>View all previous calculations with timestamps</li>
+        </ul></li>
+    </ul>
+    <p>For more detailed instructions, please refer to the documentation or contact support.</p>
+    <p>Happy calculating!</p>
+{% endblock %}

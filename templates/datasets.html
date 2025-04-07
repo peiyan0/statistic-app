@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Datasets</h1>
+
+<h2>Dataset Table</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Num. of Elements</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dataset in datasets %}
+        <tr>
+            <td>{{ dataset[0] }}</td>
+            <td>{{ dataset[1] }}</td>
+            <td>{{ dataset[2] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Two Pops Table</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Group 1</th>
+            <th>Group 2</th>
+            <th>T-Value</th>
+            <th>Assumption</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pop in two_pops %}
+        <tr>
+            <td>{{ pop[0] }}</td>
+            <td>{{ pop[1] }}</td>
+            <td>{{ pop[2] }}</td>
+            <td>{{ pop[3] }}</td>
+            <td>{{ pop[4] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Descriptive Statistics</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="data">Enter your data (comma separated):</label>
+                    <textarea class="form-control" id="data" name="data" rows="3">{% if input_data %}{{ input_data }}{% endif %}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Calculate</button>
+            </form>
+            
+            <h4 class="mt-4">Sample Datasets</h4>
+            <table border="1" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Num. of Elements</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dataset in sample_data %}
+                    <tr>
+                        <td>{{ dataset[0] }}</td>
+                        <td>{{ dataset[1] }}</td>
+                        <td>{{ dataset[2] }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="document.getElementById('data').value='{{ dataset[1]|replace('[', '')|replace(']', '') }}'">
+                                Use This
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="col-md-6">
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            
+            {% if result %}
+                <div class="card">
+                    <div class="card-header">
+                        Results
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <th>Mean</th>
+                                <td>{{ result.mean|round(4) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Median</th>
+                                <td>{{ result.median|round(4) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mode</th>
+                                <td>{{ result.mode|join(', ') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Range</th>
+                                <td>{{ result.range|round(4) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Variance</th>
+                                <td>{{ result.variance|round(4) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Standard Deviation</th>
+                                <td>{{ result.std_dev|round(4) }}</td>
+                            </tr>
+                        </table>
+                        
+                        <h5>Quartiles</h5>
+                        <table class="table">
+                            <tr>
+                                <th>Q1 (25th percentile)</th>
+                                <td>{{ result.quartiles.q1|round(4) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Q2 (Median)</th>
+                                <td>{{ result.quartiles.q2|round(4) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Q3 (75th percentile)</th>
+                                <td>{{ result.quartiles.q3|round(4) }}</td>
+                            </tr>
+                            <tr>
+                                <th>IQR (Q3-Q1)</th>
+                                <td>{{ result.quartiles.iqr|round(4) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Outliers</th>
+                                <td>
+                                    {% if result.quartiles.outliers %}
+                                        {{ result.quartiles.outliers|join(', ') }}
+                                    {% else %}
+                                        None
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
