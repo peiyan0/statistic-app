@@ -17,8 +17,7 @@ def mode(data):
     return modes
 
 def range(data):
-    sortedData = sorted(data)
-    return sortedData[-1] - sortedData[0]
+    return max(data) - min(data)
 
 def variance(data):
     meanVal = sum(data)/len(data)
