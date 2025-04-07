@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2>Calculation History</h2>
+        {% if history and history|length > 0 %} 
+        <table border="1" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Type</th>
+                    <th>Input Data</th>
+                    <th>Result</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in history %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ entry.type }}</td>
+                    <td>{{ entry.input_data }}</td>
+                    <td><pre>{{ entry.result_data | tojson(indent=2) }}</pre></td>
+                    <td>{{ entry.timestamp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>No history available.</p>
+        {% endif %}
+    </div>
+{% endblock %}

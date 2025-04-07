@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Confidence Intervals</h2>
+    
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link {% if calculation_type == 'two_pop' %}active{% endif %}" 
+               href="{{ url_for('confidence_intervals', type='two_pop') }}">Two Population CI</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if calculation_type == 'dep_data' %}active{% endif %}" 
+               href="{{ url_for('confidence_intervals', type='dep_data') }}">Dependent Data T-Test</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if calculation_type == 'two_samp_prop' %}active{% endif %}" 
+               href="{{ url_for('confidence_intervals', type='two_samp_prop') }}">Two Sample Proportion</a>
+        </li>
+    </ul>
+    
+    <div class="row mt-3">
+        <div class="col-md-6">
+            {% if calculation_type == 'two_pop' %}
+            <form method="POST">
+                <h4>Two Population Confidence Interval</h4>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="n1">Sample Size 1 (n₁)</label>
+                        <input type="number" class="form-control" id="n1" name="n1" step="any" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="x1">Mean 1 (x̄₁)</label>
+                        <input type="number" class="form-control" id="x1" name="x1" step="any" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="s1">Standard Deviation 1 (s₁)</label>
+                    <input type="number" class="form-control" id="s1" name="s1" step="any" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="n2">Sample Size 2 (n₂)</label>
+                        <input type="number" class="form-control" id="n2" name="n2" step="any" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="x2">Mean 2 (x̄₂)</label>
+                        <input type="number" class="form-control" id="x2" name="x2" step="any" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="s2">Standard Deviation 2 (s₂)</label>
+                    <input type="number" class="form-control" id="s2" name="s2" step="any" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="t_value">t-value</label>
+                    <input type="number" class="form-control" id="t_value" name="t_value" step="any" required>
+                </div>
+                
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="equal_var" name="equal_var" value="true">
+                    <label class="form-check-label" for="equal_var">
+                        Equal variances assumed
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary mt-2">Calculate</button>
+            </form>
+            
+            {% elif calculation_type == 'dep_data' %}
+            <form method="POST">
+                <h4>Dependent Data T-Test</h4>
+                <div class="form-group">
+                    <label for="before_data">Before Data (comma separated)</label>
+                    <textarea class="form-control" id="before_data" name="before_data" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="after_data">After Data (comma separated)</label>
+                    <textarea class="form-control" id="after_data" name="after_data" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Calculate</button>
+            </form>
+            
+            {% else %}
+            <form method="POST">
+                <h4>Two Sample Proportion</h4>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="n1_prop">Sample Size 1 (n₁)</label>
+                        <input type="number" class="form-control" id="n1_prop" name="n1_prop" step="any" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="p1">Proportion 1 (p₁)</label>
+                        <input type="number" class="form-control" id="p1" name="p1" step="any" min="0" max="1" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="n2_prop">Sample Size 2 (n₂)</label>
+                        <input type="number" class="form-control" id="n2_prop" name="n2_prop" step="any" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="p2">Proportion 2 (p₂)</label>
+                        <input type="number" class="form-control" id="p2" name="p2" step="any" min="0" max="1" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Calculate</button>
+            </form>
+            {% endif %}
+            
+            {% if sample_data %}
+            <h4 class="mt-4">Sample Datasets</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if calculation_type == 'two_pop' %}
+                            {% for pop in sample_data %}
+                            <tr>
+                                <td>{{ pop[0] }}</td>
+                                <td>
+                                    <strong>Group 1:</strong> {{ pop[1] }}<br>
+                                    <strong>Group 2:</strong> {{ pop[2] }}<br>
+                                    <strong>t-value:</strong> {{ pop[3] }}<br>
+                                    <strong>Assumption:</strong> {{ pop[4] }}
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" 
+                                            onclick="document.getElementById('n1').value='{{ (pop[1])[0] }}';
+                                                     document.getElementById('x1').value='{{ (pop[1])[1] }}';
+                                                     document.getElementById('s1').value='{{ (pop[1])[2] }}';
+                                                     document.getElementById('n2').value='{{ (pop[2])[0] }}';
+                                                     document.getElementById('x2').value='{{ (pop[2])[1] }}';
+                                                     document.getElementById('s2').value='{{ (pop[2])[2] }}';
+                                                     document.getElementById('t_value').value='{{ pop[3] }}';
+                                                     document.getElementById('equal_var').checked={{ 'true' if pop[4] == 'equal' else 'false' }};">
+                                        Use This
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            {% for dataset in sample_data %}
+                            <tr>
+                                <td>{{ dataset[0] }}</td>
+                                <td>{{ dataset[1] }}</td>
+                                <td>
+                                    {% if calculation_type == 'dep_data' %}
+                                    <button class="btn btn-sm btn-primary" 
+                                            onclick="document.getElementById('before_data').value='{{ dataset[1]|replace('[', '')|replace(']', '') }}';
+                                                     document.getElementById('after_data').value='{{ dataset[1]|replace('[', '')|replace(']', '') }}'">
+                                        Use This
+                                    </button>
+                                    {% elif calculation_type == 'two_samp_prop' %}
+                                    <button class="btn btn-sm btn-primary" 
+                                            onclick="document.getElementById('n1_prop').value='{{ (dataset[1])[0] if dataset[1][0] == '[' else dataset[2] }}';
+                                                     document.getElementById('p1').value='{{ (dataset[1])[1] if dataset[1][0] == '[' else 0.5 }}';
+                                                     document.getElementById('n2_prop').value='{{ (dataset[1])[0] if dataset[1][0] == '[' else dataset[2] }}';
+                                                     document.getElementById('p2').value='{{ (dataset[1])[1] if dataset[1][0] == '[' else 0.4 }}'">
+                                        Use This
+                                    </button>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="col-md-6">
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            
+            {% if result %}
+                <div class="card">
+                    <div class="card-header">
+                        Results
+                    </div>
+                    <div class="card-body">
+                        {% if calculation_type == 'two_pop' %}
+                            <pre>{{ result }}</pre>
+                        {% elif calculation_type == 'dep_data' %}
+                            <pre>{{ result }}</pre>
+                        {% else %}
+                            <p>{{ result }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

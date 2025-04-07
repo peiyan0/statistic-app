@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>ANOVA (Analysis of Variance)</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="groups_data">Enter your groups (format: group1:1,2,3;group2:4,5,6):</label>
+                    <textarea class="form-control" id="groups_data" name="groups_data" rows="3">{% if input_data %}{{ input_data }}{% endif %}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Calculate</button>
+            </form>
+            
+            <h4 class="mt-4">Sample Datasets</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Num. of Elements</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dataset in sample_data %}
+                    <tr>
+                        <td>{{ dataset[0] }}</td>
+                        <td>{{ dataset[1] }}</td>
+                        <td>{{ dataset[2] }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="document.getElementById('groups_data').value='group{{ loop.index }}:{{ dataset[1]|replace('[', '')|replace(']', '') }}'">
+                                Use This
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="col-md-6">
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            
+            {% if result %}
+                <div class="card">
+                    <div class="card-header">
+                        ANOVA Results
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <th>Number of Groups (k)</th>
+                                <td>{{ result.k }}</td>
+                            </tr>
+                            <tr>
+                                <th>Total Observations (n)</th>
+                                <td>{{ result.n }}</td>
+                            </tr>
+                            <tr>
+                                <th>Grand Mean</th>
+                                <td>{{ result.grand_mean }}</td>
+                            </tr>
+                            <tr>
+                                <th>Sum of Squares Between (SSB)</th>
+                                <td>{{ result.SSB }}</td>
+                            </tr>
+                            <tr>
+                                <th>Sum of Squares Within (SSW)</th>
+                                <td>{{ result.SSW }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mean Square Between (MSB)</th>
+                                <td>{{ result.MSB }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mean Square Within (MSW)</th>
+                                <td>{{ result.MSW }}</td>
+                            </tr>
+                            <tr>
+                                <th>F-test Statistic</th>
+                                <td>{{ result.F_test }}</td>
+                            </tr>
+                            <tr>
+                                <th>Degrees of Freedom (Between)</th>
+                                <td>{{ result.df_between }}</td>
+                            </tr>
+                            <tr>
+                                <th>Degrees of Freedom (Within)</th>
+                                <td>{{ result.df_within }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
