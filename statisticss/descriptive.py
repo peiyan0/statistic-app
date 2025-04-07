@@ -39,8 +39,8 @@ def quartile(data):
     mildLowerBound = Q1 - (1.5 * IQR)
     extremeLowerBound = Q1 - (3 * IQR)
     mildUpperBound = Q3 + (1.5 * IQR)
-    extremeUpperBound = Q3 + (1.5 * IQR)
-    outliers = [i for i in data if i < extremeLowerBound or  i  > extremeUpperBound]
+    extremeUpperBound = Q3 + (3 * IQR)
+    outliers = [i for i in data if i < mildLowerBound or  i  > mildUpperBound]
     print("Outliers: ",outliers)
     return
 
