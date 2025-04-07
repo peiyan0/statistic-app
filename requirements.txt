@@ -3,3 +3,7 @@ scipy
 pandas
 matplotlib
 pytest
+flask
+virtualenv
+sqlite3
+json
