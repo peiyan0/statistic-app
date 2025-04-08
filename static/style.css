@@ -158,17 +158,117 @@ main {
     border-color: #f5c6cb;
 }
 
-/* Footer */
+
+/* Footer Styles */
 .footer-container {
     background-color: var(--dark-color);
     color: white;
-    padding: 1.5rem 0;
-    text-align: center;
-    margin-top: auto;
+    padding: 2.5rem 0 1rem;
+    margin-top: 3rem;
 }
 
-.footer-details {
-    margin: 0;
+.footer-section {
+    margin: .5rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section h5 {
+    color: var(--light-color);
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-section h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #adb5bd;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+.footer-links i {
+    margin-right: 8px;
+    color: var(--primary-color);
+    width: 18px;
+    text-align: center;
+}
+
+.social-links {
+    margin-bottom: 1rem;
+}
+
+.social-links a {
+    color: white;
+    background: rgba(255,255,255,0.1);
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.footer-bottom a {
+    color: #adb5bd;
+    margin: 0 10px;
+}
+
+.footer-bottom a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .footer-section {
+        text-align: center;
+    }
+    
+    .footer-section h5::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
 }
 
 /* Utility Classes */

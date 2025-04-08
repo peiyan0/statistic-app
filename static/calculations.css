@@ -149,6 +149,7 @@ textarea.form-control {
     color: white;
     background-color: var(--primary-color);
     border-color: var(--primary-color);
+    margin: 5px;
 }
 
 .btn-primary:hover {
@@ -158,13 +159,14 @@ textarea.form-control {
 
 .btn-secondary {
     color: white;
-    background-color: #6c757d;
-    border-color: #6c757d;
+    background-color: #81a0da;
+    border-color: #81a0da;
+    margin: 5px;
 }
 
 .btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
+    background-color: #7089b9;
+    border-color: #7089b9;
 }
 
 .btn-sm {
