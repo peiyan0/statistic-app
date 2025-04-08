@@ -2,8 +2,6 @@
 
 A comprehensive web application for performing various statistical calculations with an intuitive interface.
 
-![App Screenshot](static/screenshot.png)
-
 ## Features
 
 - **Descriptive Statistics**: Calculate mean, median, mode, range, variance, standard deviation, quartiles, and identify outliers
@@ -14,6 +12,21 @@ A comprehensive web application for performing various statistical calculations 
 - **Sample Datasets**: Access pre-loaded datasets for quick testing
 - **Calculation History**: View and revisit previous calculations
 
+## Usage
+
+1. **Navigation**:
+   - Use the top menu to access different calculation types
+   - Dropdown menus provide access to specific tools
+
+2. **Performing Calculations**:
+   - Enter your data in comma-separated format
+   - Use sample datasets for quick testing
+   - Click "Calculate" to see results
+
+3. **Viewing History**:
+   - All calculations are saved automatically
+   - Access previous results from the History page
+  
 ## Installation
 
 1. Clone the repository:
@@ -77,18 +90,5 @@ statistics-toolkit/
 ├── requirements.txt         # Python dependencies
 └── app.py                   # Main application entry point
 ```
-
-## Usage
-
-1. **Navigation**:
-   - Use the top menu to access different calculation types
-   - Dropdown menus provide access to specific tools
-
-2. **Performing Calculations**:
-   - Enter your data in comma-separated format
-   - Use sample datasets for quick testing
-   - Click "Calculate" to see results
-
-3. **Viewing History**:
-   - All calculations are saved automatically
-   - Access previous results from the History page
+  
+![App Screenshot](static/screenshot.png)
