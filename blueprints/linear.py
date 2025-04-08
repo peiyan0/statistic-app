@@ -28,15 +28,14 @@ def linear_regression_calc():
                                      error=error,
                                      sample_data=datasets)
             
-            equation, r_squared, correlation, predict_func = linear_regression([x_data, y_data])
+            equation, r_squared, correlation = linear_regression([x_data, y_data])
             
             result = {
                 'equation': equation,
                 'r_squared': r_squared,
                 'correlation': correlation,
                 'x_data': x_data,
-                'y_data': y_data,
-                'predict_func': predict_func
+                'y_data': y_data
             }
             
             add_to_history('Linear Regression', 

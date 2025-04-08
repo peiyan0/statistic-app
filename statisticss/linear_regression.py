@@ -25,7 +25,7 @@ def linear_regression(data): # array of Xs and Ys
         return f"Coefficient of Correlation (r): {r:.4f}"
     def predict(X):
         return a + b*X
-    return regression_equation(), coefficient_of_determination(), coefficient_of_correlation(), predict
+    return regression_equation(), coefficient_of_determination(), coefficient_of_correlation()
 
 def result(data):
     equation, r_squared, correlation, predict_func = linear_regression(data)
