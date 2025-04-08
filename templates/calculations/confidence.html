@@ -7,15 +7,15 @@
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link {% if calculation_type == 'two_pop' %}active{% endif %}" 
-               href="{{ url_for('confidence_intervals', type='two_pop') }}">Two Population CI</a>
+               href="{{ url_for('confidence.confidence_intervals', type='two_pop') }}">Two Population CI</a>
         </li>
         <li class="nav-item">
             <a class="nav-link {% if calculation_type == 'dep_data' %}active{% endif %}" 
-               href="{{ url_for('confidence_intervals', type='dep_data') }}">Dependent Data T-Test</a>
+               href="{{ url_for('confidence.confidence_intervals', type='dep_data') }}">Dependent Data T-Test</a>
         </li>
         <li class="nav-item">
             <a class="nav-link {% if calculation_type == 'two_samp_prop' %}active{% endif %}" 
-               href="{{ url_for('confidence_intervals', type='two_samp_prop') }}">Two Sample Proportion</a>
+               href="{{ url_for('confidence.confidence_intervals', type='two_samp_prop') }}">Two Sample Proportion</a>
         </li>
     </ul>
     
