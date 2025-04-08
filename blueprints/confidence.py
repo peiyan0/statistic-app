@@ -88,9 +88,9 @@ def confidence_intervals():
         
         elif calculation_type == 'two_samp_prop':
             try:
-                n1 = float(request.form.get('n1_prop'))
+                n1 = float(request.form.get('n1'))
                 p1 = float(request.form.get('p1'))
-                n2 = float(request.form.get('n2_prop'))
+                n2 = float(request.form.get('n2'))
                 p2 = float(request.form.get('p2'))
                 
                 result = two_samp_prop([[n1, p1], [n2, p2]])
