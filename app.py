@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime
+from dotenv import load_dotenv
+import os
 import sqlite3 
 import json
 
@@ -8,8 +10,9 @@ from blueprints.confidence import confidence_views
 from blueprints.descriptive import descriptive_views
 from blueprints.linear import linear_views
 
+load_dotenv()
 app = Flask(__name__)
-app.secret_key = 'secret_key'  # Replace with a strong secret key for production
+app.secret_key = os.getenv('FLASK_SECRET_KEY', 'default_secret_key')
 
 app.register_blueprint(anova_views, url_prefix='/calculations')
 app.register_blueprint(confidence_views, url_prefix='/calculations')
