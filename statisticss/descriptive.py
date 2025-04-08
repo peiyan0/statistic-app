@@ -12,8 +12,8 @@ def median(data):
 from collections import Counter
 def mode(data):
     count = Counter(data)
-    maxCount = max(list(count.values()))
-    modes = [key for key, value in list(count.items()) if value == maxCount]
+    maxCount = max(count.values())
+    modes = [key for key, value in count.items() if value == maxCount]
     return modes
 
 def range(data):

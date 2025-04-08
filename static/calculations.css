@@ -159,14 +159,14 @@ textarea.form-control {
 
 .btn-secondary {
     color: white;
-    background-color: #81a0da;
-    border-color: #81a0da;
+    background-color: #6c8cc7;
+    border-color: #6c8cc7;
     margin: 5px;
 }
 
 .btn-secondary:hover {
-    background-color: #7089b9;
-    border-color: #7089b9;
+    background-color: #5e76a1;
+    border-color: #5e76a1;
 }
 
 .btn-sm {

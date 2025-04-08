@@ -18,9 +18,9 @@ def linear_regression(data): # array of Xs and Ys
     r = SSxy / (SSxx * SSyy) ** 0.5
     
     def regression_equation():
-        return f"Regression Equation: y = {a:.4f} + {b:.4f}x, x in range[{x_min}, {x_max}]"
+        return f"Regression Equation: y = {a:.4f} + {b:.4f}x, x in range [{x_min}, {x_max}]"
     def coefficient_of_determination():
-        return f"Coefficient of Determination (R^2): {r2:.4f}"
+        return f"Coefficient of Determination (R²): {r2:.4f}"
     def coefficient_of_correlation():
         return f"Coefficient of Correlation (r): {r:.4f}"
     def predict(X):
