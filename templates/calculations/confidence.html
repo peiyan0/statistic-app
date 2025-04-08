@@ -88,12 +88,12 @@
                 <h4>Two Sample Proportion</h4>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="n1_prop">Sample Size 1 (n₁)</label>
-                        <input type="number" class="form-control" id="n1_prop" name="n1_prop" step="any" required>
+                        <label for="n1">Sample Size 1 (n₁)</label>
+                        <input type="number" class="form-control" id="n1" name="n1" step="any" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="p1">Proportion 1 (p₁)</label>
-                        <input type="number" class="form-control" id="p1" name="p1" step="any" min="0" max="1" required>
+                        <input type="number" class="form-control" id="p1" name="p1" step="0.00001" min="0" max="1" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -103,7 +103,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="p2">Proportion 2 (p₂)</label>
-                        <input type="number" class="form-control" id="p2" name="p2" step="any" min="0" max="1" required>
+                        <input type="number" class="form-control" id="p2" name="p2" step="0.00001" min="0" max="1" required>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Calculate</button>
@@ -190,9 +190,9 @@
                     </div>
                     <div class="card-body">
                         {% if calculation_type == 'two_pop' %}
-                            <pre>{{ result }}</pre>
+                            <p>{{ result }}</p>
                         {% elif calculation_type == 'dep_data' %}
-                            <pre>{{ result }}</pre>
+                            <p>{{ result }}</p>
                         {% else %}
                             <p>{{ result }}</p>
                         {% endif %}
