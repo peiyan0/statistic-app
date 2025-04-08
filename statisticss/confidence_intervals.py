@@ -37,7 +37,7 @@ def dep_data(args):
     sum2 = sum(i ** 2 for i in d)
     Sd = ( (sum2 - (sum(d)**2) / n) / (n-1)) ** 0.5
     t_test = mean / (Sd/(n ** 0.5))
-    print(f"mean d: {mean:.4f}\nSd = {Sd:.4f}\nt-test: {t_test:.3f}")
+    return f"mean d: {mean:.4f}\nSd = {Sd:.4f}\nt-test: {t_test:.3f}"
 
 # 2 sample proportion
 def two_samp_prop(args):
