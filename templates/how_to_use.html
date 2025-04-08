@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='how.css') }}">
+{% endblock %}
+
 {% block content %}
     <H1>How to Use</H1>
     <ul>

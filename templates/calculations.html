@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='calculations.css') }}">
+{% endblock %}
+
 {% block content %}
     <h1>Statistics</h1>
 {% endblock %}

@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='calculations.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='datasets.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <h2>Confidence Intervals</h2>
