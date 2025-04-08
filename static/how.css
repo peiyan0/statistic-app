@@ -1,0 +1,50 @@
+/* How to Use Section */
+.how-to-use-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+}
+
+.how-to-use-container h1 {
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-color);
+}
+
+.how-to-use-container ul {
+    list-style-type: none;
+    margin-bottom: 1.5rem;
+}
+
+.how-to-use-container li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.how-to-use-container li:before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.how-to-use-container li ul {
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+}
+
+.how-to-use-container li ul li:before {
+    content: "◦";
+    color: var(--secondary-color);
+}
+
+.how-to-use-container p {
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: #6c757d;
+}
