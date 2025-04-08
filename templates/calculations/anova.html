@@ -6,7 +6,7 @@
     
     <div class="row">
         <div class="col-md-6">
-            <form method="POST">
+            <form method="POST" onsubmit="removeTrailingSemicolon()">
                 <div class="form-group">
                     <label for="groups_data">Enter your groups (format: group1:1,2,3;group2:4,5,6):</label>
                     <textarea class="form-control" id="groups_data" name="groups_data" rows="3">{% if input_data %}{{ input_data }}{% endif %}</textarea>
@@ -31,7 +31,8 @@
                         <td>{{ dataset[1] }}</td>
                         <td>{{ dataset[2] }}</td>
                         <td>
-                            <button class="btn btn-sm btn-primary" onclick="document.getElementById('groups_data').value='group{{ loop.index }}:{{ dataset[1]|replace('[', '')|replace(']', '') }}'">
+                            <button class="btn btn-sm btn-primary" 
+                                    onclick="addGroupToTextarea('group{{ loop.index }}:{{ dataset[1]|replace('[', '')|replace(']', '') }}', this)">
                                 Use This
                             </button>
                         </td>
@@ -100,4 +101,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    function addGroupToTextarea(groupData, button) {
+        const textarea = document.getElementById('groups_data');
+        // Append the group data with a semicolon
+        textarea.value += groupData + ';';
+
+        // Change the button text to "Selected"
+        button.innerText = 'Selected';
+        button.disabled = true; // Disable the button to prevent re-selection
+    }
+
+    function removeTrailingSemicolon() {
+        const textarea = document.getElementById('groups_data');
+        // Remove the trailing semicolon if it exists
+        if (textarea.value.endsWith(';')) {
+            textarea.value = textarea.value.slice(0, -1);
+        }
+    }
+</script>
 {% endblock %}
