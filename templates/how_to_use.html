@@ -5,36 +5,77 @@
 {% endblock %}
 
 {% block content %}
-    <H1>How to Use</H1>
-    <ul>
-        <li>Descriptive Statistics:
+<div class="container how-to-use-container">
+    <h1>How to Use This Tool</h1>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Descriptive Statistics</h3>
             <ul>
                 <li>Enter comma-separated numbers or select a sample dataset</li>
-                <li>View mean, median, mode, range, variance, standard deviation, quartiles, and outliers</li>
+                <li>View comprehensive statistics including:
+                    <ul>
+                        <li>Mean, median, and mode</li>
+                        <li>Range, variance, and standard deviation</li>
+                        <li>Quartiles and outlier detection</li>
+                    </ul>
+                </li>
             </ul>
-        </li>
-        <li>Linear Regression:<ul>
-            <li>Enter X and Y values as comma-separated lists</li>
-            <li>View regression equation, R², and correlation coefficient</li>
-        </ul></li>
-        <li>ANOVA:<ul>
-            <li>Enter data in format: "group1:1,2,3;group2:4,5,6"</li>
-            <li>View ANOVA table with F-test, degrees of freedom, and sum of squares</li>
-        </ul></li>
-        <li>Confidence Intervals:<ul>
-            Choose between three types:
-            <li>Two Population CI (enter sample sizes, means, std devs)</li>
-            <li>Dependent Data T-Test (enter before/after measurements)</li>
-            <li>Two Sample Proportion (enter sample sizes and proportions)</li>
-        </ul></li>
-        <li>Datasets:<ul>
-            <li>Browse all available sample datasets</li>
-            <li>Click to use in calculations</li>
-        </ul></li>
-        <li>History:<ul>
-            <li>View all previous calculations with timestamps</li>
-        </ul></li>
-    </ul>
-    <p>For more detailed instructions, please refer to the documentation or contact support.</p>
-    <p>Happy calculating!</p>
+
+            <h3>Linear Regression</h3>
+            <ul>
+                <li>Enter paired X and Y values as comma-separated lists</li>
+                <li>Results include:
+                    <ul>
+                        <li>Regression equation (y = mx + b)</li>
+                        <li>R² (coefficient of determination)</li>
+                        <li>Correlation coefficient</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>ANOVA</h3>
+            <ul>
+                <li>Enter data in format: "group1:1,2,3;group2:4,5,6"</li>
+                <li>Detailed ANOVA table includes:
+                    <ul>
+                        <li>F-test statistic</li>
+                        <li>Degrees of freedom</li>
+                        <li>Sum of squares (between/within)</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Confidence Intervals</h3>
+            <ul>
+                <li>Three types available:
+                    <ul>
+                        <li><strong>Two Population CI:</strong> Compare means from two samples</li>
+                        <li><strong>Dependent Data T-Test:</strong> Analyze before/after measurements</li>
+                        <li><strong>Two Sample Proportion:</strong> Compare proportions between groups</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Tips & Notes</h4>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Sample datasets are provided for quick testing</li>
+                        <li>All calculations are performed server-side</li>
+                        <li>Results are rounded to 4 decimal places</li>
+                        <li>Your calculation history is saved for reference</li>
+                    </ul>
+                    <p class="mt-3">For detailed documentation, please contact our support team.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <p class="text-center mt-4">Happy analyzing! We hope this tool helps with your statistical needs.</p>
+</div>
 {% endblock %}

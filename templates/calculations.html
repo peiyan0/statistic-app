@@ -5,5 +5,35 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Statistics</h1>
+<div class="container">
+    <h1>Statistical Calculations</h1>
+    <p class="lead">Choose a calculation method:</p>
+    
+    <div class="calculation-grid">
+        <div class="calculation-button">
+            <a href="/calculations/anova">
+                <i class="fas fa-chart-bar fa-2x mb-2"></i>
+                <span>ANOVA</span>
+            </a>
+        </div>
+        <div class="calculation-button">
+            <a href="/calculations/confidence">
+                <i class="fas fa-chart-line fa-2x mb-2"></i>
+                <span>Confidence Interval</span>
+            </a>
+        </div>
+        <div class="calculation-button">
+            <a href="/calculations/descriptive">
+                <i class="fas fa-calculator fa-2x mb-2"></i>
+                <span>Descriptive Statistics</span>
+            </a>
+        </div>
+        <div class="calculation-button">
+            <a href="/calculations/linear">
+                <i class="fas fa-project-diagram fa-2x mb-2"></i>
+                <span>Linear Regression</span>
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
