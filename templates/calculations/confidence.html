@@ -134,14 +134,17 @@
                                 </td>
                                 <td>
                                     <button class="btn btn-sm btn-primary" 
-                                            onclick="document.getElementById('n1').value='{{ (pop[1])[0] }}';
-                                                     document.getElementById('x1').value='{{ (pop[1])[1] }}';
-                                                     document.getElementById('s1').value='{{ (pop[1])[2] }}';
-                                                     document.getElementById('n2').value='{{ (pop[2])[0] }}';
-                                                     document.getElementById('x2').value='{{ (pop[2])[1] }}';
-                                                     document.getElementById('s2').value='{{ (pop[2])[2] }}';
-                                                     document.getElementById('t_value').value='{{ pop[3] }}';
-                                                     document.getElementById('equal_var').checked={{ 'true' if pop[4] == 'equal' else 'false' }};">
+                                            onclick="
+                                                    const data1 = JSON.parse('{{ pop[1] }}');
+                                                    const data2 = JSON.parse('{{ pop[2] }}');
+                                                    document.getElementById('n1').value=data1[0];
+                                                    document.getElementById('x1').value=data1[1];
+                                                    document.getElementById('s1').value=data1[2];
+                                                    document.getElementById('n2').value=data2[0];
+                                                    document.getElementById('x2').value=data2[1];
+                                                    document.getElementById('s2').value=data2[2];
+                                                    document.getElementById('t_value').value='{{ pop[3] }}';
+                                                    document.getElementById('equal_var').checked={{ 'true' if pop[4] == 'equal' else 'false' }};">
                                         Use This
                                     </button>
                                 </td>
@@ -155,17 +158,27 @@
                                 <td>
                                     {% if calculation_type == 'dep_data' %}
                                     <button class="btn btn-sm btn-primary" 
-                                            onclick="document.getElementById('before_data').value='{{ dataset[1]|replace('[', '')|replace(']', '') }}';
-                                                     document.getElementById('after_data').value='{{ dataset[1]|replace('[', '')|replace(']', '') }}'">
-                                        Use This
-                                    </button>
+                                            onclick="document.getElementById('before_data').value='{{ dataset[1]|replace('[', '')|replace(']', '') }}';">
+                                    Use This as Before
+                                </button>
+                                    <button class="btn btn-sm btn-secondary" 
+                                            onclick="document.getElementById('after_data').value='{{ dataset[1]|replace('[', '')|replace(']', '') }}';">
+                                    Use This as After
+                                </button>
                                     {% elif calculation_type == 'two_samp_prop' %}
                                     <button class="btn btn-sm btn-primary" 
-                                            onclick="document.getElementById('n1_prop').value='{{ (dataset[1])[0] if dataset[1][0] == '[' else dataset[2] }}';
-                                                     document.getElementById('p1').value='{{ (dataset[1])[1] if dataset[1][0] == '[' else 0.5 }}';
-                                                     document.getElementById('n2_prop').value='{{ (dataset[1])[0] if dataset[1][0] == '[' else dataset[2] }}';
-                                                     document.getElementById('p2').value='{{ (dataset[1])[1] if dataset[1][0] == '[' else 0.4 }}'">
-                                        Use This
+                                        onclick="
+                                            const data = JSON.parse('{{ dataset[1] }}');
+                                            document.getElementById('n1').value = data[0];
+                                            document.getElementById('p1').value = data[1];">
+                                        Use This for Sample 1
+                                    </button>
+                                    <button class="btn btn-sm btn-secondary" 
+                                            onclick="
+                                                const data = JSON.parse('{{ dataset[1] }}');
+                                                document.getElementById('n2').value = data[0];
+                                                document.getElementById('p2').value = data[1];">
+                                        Use This for Sample 2
                                     </button>
                                     {% endif %}
                                 </td>
